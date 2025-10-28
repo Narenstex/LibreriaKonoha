@@ -1,0 +1,116 @@
+/**
+ * Estilos base "Apple-like" para la Biblioteca de Konoha (Req. 5)
+ */
+
+/* Reseteo básico y fuente principal */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f5f5f7; /* Gris claro de fondo */
+    color: #1d1d1f; /* Negro principal */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 420px; /* Ancho típico de un modal de login */
+    padding: 30px;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    font-weight: 600;
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* --- Estilos de Formularios --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #d2d2d7; /* Borde gris suave */
+    border-radius: 8px;
+    box-sizing: border-box; /* Importante para que el padding no afecte el ancho */
+    transition: all 0.2s ease;
+}
+.form-control:focus {
+    border-color: #007aff; /* Azul Apple al seleccionar */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,122,255,0.25);
+}
+
+/* --- Botones --- */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007aff; /* Azul Apple */
+    color: #ffffff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* --- Alertas y Errores --- */
+.error-box {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.error-box.success {
+    background-color: #e5f7ed;
+    color: #1d7246;
+    border: 1px solid #c3e6cb;
+}
+
+.error-box.danger {
+    background-color: #fbebed;
+    color: #c51f28;
+    border: 1px solid #f5c6cb;
+}
+
+/* Para errores de JS */
+.form-error {
+    color: #c51f28;
+    font-size: 13px;
+    margin-top: 5px;
+    display: none; /* Oculto por defecto */
+}

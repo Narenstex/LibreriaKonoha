@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    Options -Multiviews
+    RewriteEngine On
+    
+    # No re-escribir archivos que SÍ existen (como style.css)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Redirigir TODO lo demás a index.php,
+    # pasando la URL como parámetro 'url'
+    RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+</IfModule>
