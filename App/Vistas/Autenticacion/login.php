@@ -43,9 +43,6 @@
     <div style="text-align: center; margin-top: 20px;">
         <a href="/LIBRERIAKONOHA/recuperar" style="color: #007aff; text-decoration: none;">¿Olvidaste tu contraseña?</a>
     </div>
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="/LIBRERIAKONOHA/recuperar" style="color: #007aff; text-decoration: none;">¿Olvidaste tu contraseña?</a>
-    </div>
 
     <div style="text-align: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e5e7;">
         ¿No tienes cuenta? 

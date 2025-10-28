@@ -67,8 +67,9 @@ $rol = $_SESSION['rol'] ?? 'Ninja';
 
     <?php case 'ANBU': ?>
         <div class="dashboard-modulo">
-            <h3>Alertas de Préstamos Vencidos (RF11, RF12)</h3>
-            <p>Pergamino 'Rasen-Shuriken' (ID 45) tiene 2 días de retraso.</p>
+            <h3>Alertas de Devolución</h3>
+            <p>Lista de pergaminos con la fecha de devolución vencida.</p>
+            <a href="/LIBRERIAKONOHA/prestamos/alertas" class="btn" style="width: auto; background-color: #c51f28; color: #fff;">Ver Alertas Urgentes</a>
         </div>
         <div class="dashboard-modulo">
             <h3>Historial de Consultas (RF09)</h3>
@@ -78,10 +79,11 @@ $rol = $_SESSION['rol'] ?? 'Ninja';
 
     <?php case 'Bibliotecario': ?>
         <div class="dashboard-modulo">
-            <h3>Gestión de Préstamos</h3>
-            <p>Administrar préstamos de pergaminos.</p>
-            <a href="#" class="btn" style="width: auto; margin-right: 10px;">Registrar Préstamo</a>
-            <a href="#" class="btn" style="width: auto;">Ver Préstamos Activos</a>
+            <h3>Registro de Préstamos</h3>
+            <p>Registra el retiro y la devolución de pergaminos por los ninjas.</p>
+            <a href="/LIBRERIAKONOHA/prestamos/crear" class="btn" style="width: auto; margin-right: 10px; background-color: #555555; color: #fff;">Registrar Préstamo</a>
+            <a href="/LIBRERIAKONOHA/prestamos/index" class="btn" style="width: auto; background-color: #e5e5e7; color: #333; margin-right: 10px;">Ver Préstamos Activos</a>
+            <a href="/LIBRERIAKONOHA/prestamos/historial" class="btn" style="width: auto; background-color: #f0f0f0; color: #333;">Ver Historial Completo</a>
         </div>
         
         <div class="dashboard-modulo">
@@ -89,16 +91,31 @@ $rol = $_SESSION['rol'] ?? 'Ninja';
             <p>Ver el inventario, añadir o editar documentos en el archivo.</p>
             <a href="/LIBRERIAKONOHA/documentos" class="btn btn-primary" style="width: auto;">Gestionar Inventario</a>
         </div>
+        
         <?php break; ?>
         
 
-    <?php case 'Ninja': ?>
-    <?php case 'Investigador': ?>
-    <?php default: ?>
+    
+    <?php case 'Ninja': 
+    case 'Investigador': 
+    default:
+     ?>
+        <h3 style="margin-top: 0;">Módulos de Búsqueda y Consulta</h3>
+
         <div class="dashboard-modulo">
-            <h3>Búsqueda de Documentos (RF04, RF05)</h3>
-            <p>Acceso de solo lectura a los archivos permitidos.</p>
-            <input type="text" class="form-control" placeholder="Buscar por nombre, tipo o rango...">
+            <h3>Búsqueda de Archivos Shinobi</h3>
+            <p>Acceso de solo lectura a jutsus, historia y estudios médicos.</p>
+            
+            <form action="/LIBRERIAKONOHA/Documentos/buscar" method="GET">
+                <input type="text" name="q" class="form-control" placeholder="Buscar por título, tipo, rango o sección (Ej: Genjutsu, Fuego, Nara, S)" style="margin-bottom: 15px;" >
+                <button type="submit" class="btn btn-primary" style="width: auto;">Buscar Archivos</button>
+            </form>
+            </div>
+
+        <div class="dashboard-modulo">
+            <h3>Documentos Destacados</h3>
+            <p>Vínculos rápidos a documentos de investigación (Clan Hyūga/Yamanaka).</p>
+            <a href="#" style="color: #007aff;">Ver Estudios Médicos</a> | <a href="#" style="color: #007aff;">Ver Historia Shinobi</a>
         </div>
         <?php break; ?>
 

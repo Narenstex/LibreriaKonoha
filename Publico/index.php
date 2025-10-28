@@ -61,51 +61,104 @@ switch ($urlPartes[0]) {
 
 
     // --- MÓDULO DE DOCUMENTOS (CRUD Completo) ---
-    case 'documentos':
+            case 'Documentos':
+                // 1. Cargamos el controlador
+                require_once __DIR__ . '/../App/Controladores/DocumentoController.php';
+                $docController = new DocumentoController($db_conexion);
+        
+                // 2. Revisamos la segunda parte de la URL
+                $accion = $urlPartes[1] ?? 'index';
+        
+                // 3. Capturamos el ID si existe (para editar/eliminar/ver)
+                $id = $urlPartes[2] ?? 0;
+        
+                switch ($accion) {
+                    case 'crear':
+                        // ... (código existente) ...
+                        break;
+        
+                    case 'editar':
+                        // ... (código existente) ...
+                        break;
+        
+                    case 'actualizar':
+                        // ... (código existente) ...
+                        break;
+        
+                    case 'eliminar':
+                        // ... (código existente) ...
+                        break;
+
+                    // --- ¡¡NUEVA RUTA!! ---
+                    case 'buscar':
+                        // /documentos/buscar (siempre es GET desde el form)
+                        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                            $docController->buscar();
+                        } else {
+                            $docController->redirigirA('dashboard');
+                        }
+                        break;
+                    // --- FIN NUEVA RUTA ---
+
+                    case 'index':
+                    default:
+                        $docController->index();
+                        break;
+                }
+                break;
+            
+    // --- FIN DEL MÓDULO DE DOCUMENTOS ---
+
+   // --- MÓDULO DE PRÉSTAMOS ACTUALIZADO ---
+    case 'prestamos':
         // 1. Cargamos el controlador
-        require_once __DIR__ . '/../App/Controladores/DocumentoController.php';
-        $docController = new DocumentoController($db_conexion);
+        require_once __DIR__ . '/../App/Controladores/PrestamoController.php';
+        $prestamoController = new PrestamoController($db_conexion);
 
         // 2. Revisamos la segunda parte de la URL
         $accion = $urlPartes[1] ?? 'index';
 
-        // 3. Capturamos el ID si existe (para editar/actualizar/eliminar)
+        // 3. Capturamos el ID si existe
         $id = $urlPartes[2] ?? 0;
 
         switch ($accion) {
+            case 'alertas':
+                $prestamoController->alertas();
+                break;
+
             case 'crear':
                 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                    $docController->crear();
+                    $prestamoController->crear();
                 }
                 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $docController->guardar();
+                    $prestamoController->guardar();
                 }
                 break;
 
-            case 'editar':
-                $docController->editar($id);
-                break;
-
-            case 'actualizar':
+            case 'devolver':
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $docController->actualizar($id);
+                    $prestamoController->devolver($id);
+                } else {
+                    $prestamoController->redirigirA('prestamos/index', 'error', 'Acción no permitida.');
                 }
                 break;
 
-            // --- ¡¡AQUÍ ESTÁ EL ARREGLO!! ---
-            case 'eliminar':
-                // Llama a la función eliminar del controlador
-                $docController->eliminar($id);
+            // --- ¡¡NUEVA RUTA!! ---
+            case 'historial':
+                // /prestamos/historial
+                $prestamoController->historial();
                 break;
-            // --- FIN DEL ARREGLO ---
+            // --- FIN NUEVA RUTA ---
 
             case 'index':
             default:
-                $docController->index();
+                $prestamoController->index();
                 break;
         }
         break;
-    // --- FIN DEL MÓDULO DE DOCUMENTOS ---
+   
+    // --- FIN DEL MÓDULO DE PRÉSTAMOS ---
+
 
     case '':
     case 'home':
@@ -117,3 +170,4 @@ switch ($urlPartes[0]) {
         echo "Error 404: Página no encontrada.";
         break;
 }
+?>

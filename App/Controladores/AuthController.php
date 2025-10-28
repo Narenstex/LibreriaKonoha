@@ -117,12 +117,12 @@ class AuthController {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'tu.correo.real@gmail.com'; // <-- TU EMAIL
-            $mail->Password   = 'tu_clave_de_16_letras'; // <-- TU CLAVE
+            $mail->Username   = 'narensantiagorojassanchez@gmail.com'; // <-- TU EMAIL
+            $mail->Password   = 'grsi kcqa lxfc gsuh'; // <-- TU CLAVE
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
             
-            $mail->setFrom('tu.correo.real@gmail.com', 'Biblioteca de Konoha');
+            $mail->setFrom('narensantiagorojassanchez@gmail.com', 'Biblioteca de Konoha');
             $mail->addAddress($email);
 
             $mail->isHTML(true);

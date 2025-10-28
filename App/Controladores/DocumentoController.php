@@ -150,4 +150,41 @@ class DocumentoController extends BaseController {
             $this->redirigirA('documentos', 'error', 'Error al eliminar el documento de la base de datos.');
         }
     }
+    // -----------------------------------------------------------------
+    // --- ¡NUEVO! FUNCIÓN: BUSCADOR DE DOCUMENTOS (Para Lectores) ---
+    // -----------------------------------------------------------------
+    /**
+     * Muestra los resultados de una búsqueda para el rol Lector.
+     * Es la interfaz principal para Ninjas/Investigadores.
+     */
+    public function buscar() {
+        die("¡LA FUNCIÓN BUSCAR SÍ SE ESTÁ LLAMANDO!");
+        $termino = trim($_GET['q'] ?? '');
+
+        if (empty($termino)) {
+            $this->redirigirA('dashboard', 'error', 'Debes ingresar un término de búsqueda.');
+            return;
+        }
+        
+        // 1. Pedirle los resultados al Modelo
+        $resultados = $this->modeloDocumento->buscarDocumentos($termino);
+        // ----- CÓDIGO DE DEPURACIÓN -----
+    echo "<pre style='font-family: monospace; background: #eee; padding: 10px; border: 1px solid #ccc;'>";
+    echo "Buscando término: ";
+    var_dump($termino);
+    echo "<hr>Resultados del Modelo:<br>";
+    var_dump($resultados);
+    echo "</pre>";
+    // ----- FIN DE DEPURACIÓN -----
+
+        // 2. Preparar los datos
+        $datosParaLaVista = [
+            'titulo_pagina' => 'Resultados de Búsqueda',
+            'termino' => htmlspecialchars($termino),
+            'documentos' => $resultados
+        ];
+
+        // 3. Cargar la vista de resultados
+        $this->cargarVista('Documentos/resultados', $datosParaLaVista);
+    }
 }
